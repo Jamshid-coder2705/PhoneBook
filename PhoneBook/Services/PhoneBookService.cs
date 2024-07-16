@@ -1,13 +1,21 @@
-﻿
+﻿using PhoneBook.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace PhoneBook.Services
 {
     public class PhoneBookService : IPhoneBookService
     {
+        private IShowPrint showPrint;
+
         private const string FilePath = "../../../phoneBook.txt";
         private Dictionary<string, string> contacts = new Dictionary<string, string>();
+
+        public PhoneBookService()
+        {
+            showPrint = new ShowPrinter();
+        }
 
         public void AddContact(string name, string phone)
         {
@@ -15,7 +23,7 @@ namespace PhoneBook.Services
             {
                 if (contacts.ContainsKey(name))
                 {
-                    Console.WriteLine($"{name} allaqachon mavjud.");
+                    showPrint.ShowPrint($"{name} allaqachon mavjud.");
                 }
                 else
                 {
