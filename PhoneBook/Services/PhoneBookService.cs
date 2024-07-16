@@ -28,16 +28,22 @@ namespace PhoneBook.Services
                 else
                 {
                     contacts[name] = phone;
-                    Console.WriteLine($"{name} qo'shildi.");
-                    Console.ReadKey();
-                    Console.Clear();
+                    showPrint.ShowPrint($"{name} qo'shildi.");
+                    
                 }
                 SaveContacts();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
+        }
+
+        private static void ClearMessage()
+        {
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public void DeleteContact(string name)
@@ -46,18 +52,21 @@ namespace PhoneBook.Services
             {
                 if (contacts.Remove(name))
                 {
-                    Console.WriteLine($"{name} o'chirildi.");
+                    showPrint.ShowPrint($"{name} o'chirildi.");
+
                 }
                 else
                 {
-                    Console.WriteLine($"{name} topilmadi.");
+                    showPrint.ShowPrint($"{name} topilmadi.");
                 }
                 SaveContacts();
+                
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
 
         public void UpdateContact(string name, string newPhone)
@@ -67,18 +76,19 @@ namespace PhoneBook.Services
                 if (contacts.ContainsKey(name))
                 {
                     contacts[name] = newPhone;
-                    Console.WriteLine($"{name} yangilandi.");
+                    showPrint.ShowPrint($"{name} yangilandi.");
                 }
                 else
                 {
-                    Console.WriteLine($"{name} topilmadi.");
+                    showPrint.ShowPrint($"{name} topilmadi.");
                 }
                 SaveContacts();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
 
         public void SearchContact(string name)
@@ -87,17 +97,18 @@ namespace PhoneBook.Services
             {
                 if (contacts.ContainsKey(name))
                 {
-                    Console.WriteLine($"{name}: {contacts[name]}");
+                    showPrint.ShowPrint($"{name}: {contacts[name]}");
                 }
                 else
                 {
-                    Console.WriteLine($"{name} topilmadi.");
+                    showPrint.ShowPrint($"{name} topilmadi.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
 
         public void ListContacts()
@@ -108,18 +119,19 @@ namespace PhoneBook.Services
                 {
                     foreach (var contact in contacts)
                     {
-                        Console.WriteLine($"{contact.Key}: {contact.Value}");
+                        showPrint.ShowPrint($"{contact.Key}: {contact.Value}");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Telefon kitobi bo'sh.");
+                    showPrint.ShowPrint("Telefon kitobi bo'sh.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
 
         public void LoadContacts()
@@ -142,8 +154,9 @@ namespace PhoneBook.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
 
         public void SaveContacts()
@@ -159,8 +172,9 @@ namespace PhoneBook.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Xatolik: {ex.Message}");
+                showPrint.ShowPrint($"Xatolik: {ex.Message}");
             }
+            ClearMessage();
         }
     }
 }
