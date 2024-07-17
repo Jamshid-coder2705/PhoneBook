@@ -1,4 +1,5 @@
 ﻿using System;
+using PhoneBook.Interface;
 using PhoneBook.Services;
 
 namespace PhoneBook
@@ -7,13 +8,14 @@ namespace PhoneBook
     {
         static void Main(string[] args)
         {
+            IShowPrint PrintShow = new ShowPrinter();
             const string password = "123";
-            Console.Write("Parol kiriting: ");
+            PrintShow.ShowPrint("Parol kiriting: ");
             string inputPassword = Console.ReadLine();
-
+            
             if (inputPassword != password)
             {
-                Console.WriteLine("Noto'g'ri parol. Chiqish...");
+                PrintShow.ShowPrint("Noto'g'ri parol. Chiqish...");
                 return;
             }
 
@@ -22,14 +24,14 @@ namespace PhoneBook
 
             while (true)
             {
-                
-                Console.WriteLine("\nTelefon Kitobi:");
-                Console.WriteLine("1. Kontakt qo'shish");
-                Console.WriteLine("2. Kontaktni o'chirish");
-                Console.WriteLine("3. Kontaktni yangilash");
-                Console.WriteLine("4. Kontaktni qidirish");
-                Console.WriteLine("5. Kontaktlarni ko'rish");
-                Console.WriteLine("6. Chiqish");
+
+                PrintShow.ShowPrint("\nTelefon Kitobi:");
+                PrintShow.ShowPrint("1. Kontakt qo'shish");
+                PrintShow.ShowPrint("2. Kontaktni o'chirish");
+                PrintShow.ShowPrint("3. Kontaktni yangilash");
+                PrintShow.ShowPrint("4. Kontaktni qidirish");
+                PrintShow.ShowPrint("5. Kontaktlarni ko'rish");
+                PrintShow.ShowPrint("6. Chiqish");
 
                 Console.Write("Tanlang (1-6): ");
                 string choice = Console.ReadLine();
@@ -67,7 +69,7 @@ namespace PhoneBook
                         phoneBookService.SaveContacts();
                         return;
                     default:
-                        Console.WriteLine("Noto'g'ri tanlov, qayta urinib ko'ring.");
+                        PrintShow.ShowPrint("Noto'g'ri tanlov, qayta urinib ko'ring.");
                         break;
                 }
             }

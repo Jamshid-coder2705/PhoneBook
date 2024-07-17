@@ -17,6 +17,7 @@ namespace PhoneBook.Services
             showPrint = new ShowPrinter();
         }
 
+
         public void AddContact(string name, string phone)
         {
             try
@@ -53,7 +54,6 @@ namespace PhoneBook.Services
                 if (contacts.Remove(name))
                 {
                     showPrint.ShowPrint($"{name} o'chirildi.");
-
                 }
                 else
                 {
